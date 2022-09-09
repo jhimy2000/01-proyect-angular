@@ -1,7 +1,42 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href=""> CRUD del Salon de la fama</a>
+  </nav>
 
-<h1>Hola mundo</h1>
-<h2>{{'Hola mundo'.repeat(5) }}</h2>
-<h1>{{ 'Hola Platzi' }}</h1>
-<h2>1 + 1 = {{ 1 + 1 }}</h2>
-<h3>hola soy {{name}} y tengo {{age}}</h3>
-<img src={{img}} alt="imagne">
+  <div class="wrapper wrapper--w680">
+    <div class="row">
+      <div class="col-md-8 mt-4">
+        <ul class="list-group">
+
+            <li *ngFor="let estudent of estudentsArray"
+            class="list-group-item list-group-item-action"
+            (click)="openForEdit(estudent)"
+            [class.active]="estudent === selectedEstudent"
+            >
+            <span> {{estudent.id}}</span> {{estudent.name}} - {{estudent.country}}
+          </li>
+      </ul>
+      <div class="card mt-4">
+        <div class="card-body">
+        <div class="card-title">
+          Insertar nuevos integrantes
+        </div>
+        <div class="form-group">
+          <input type="text" [(ngModel)]="selectedEstudent.name" placeholder="Insertar Nombre" class="form-control" name="Id">
+        </div>
+        <div class="form-group">
+          <input type="text" [(ngModel)]="selectedEstudent.country" placeholder="Insertar Pais" class="form-control" name="Id">
+        </div>
+        <button (click)="addOrEdit()" class="btn btn-primary">Enviar</button>
+        <button (click)="delete()" *ngIf="selectedEstudent.id !==0" class="btn btn-danger">Eliminar</button>
+
+        <div>
+            <img src={{img}} alt="imagne">
+        </div>
+
+
+
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
